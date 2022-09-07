@@ -185,8 +185,18 @@
     },
     // AIRport "platforms" folder (alphabetical order)
     {
-      "packageName": "@airport/web-airport",
-      "projectFolder": "../AIRport/platforms/web-airport",
+      "packageName": "@airport/api",
+      "projectFolder": "../AIRport/platforms/api",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/app",
+      "projectFolder": "../AIRport/platforms/app",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/server",
+      "projectFolder": "../AIRport/platforms/server",
       "shouldPublish": true
     },
     {
@@ -223,6 +233,17 @@
     {
       "packageName": "@airport/travel-document-checkpoint",
       "projectFolder": "../AIRport/schemas/travel-document-checkpoint",
+      "shouldPublish": true
+    },
+    // AIRport "UI" folder (alphabetical order)
+    {
+      "packageName": "@airport/ui-react-components",
+      "projectFolder": "../AIRport/UI/react/components",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/ui-react-main",
+      "projectFolder": "../AIRport/UI/react/main",
       "shouldPublish": true
     }
   ]
