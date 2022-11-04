@@ -163,6 +163,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@airport/session-state",
+      "projectFolder": "../AIRport/libs/session-state",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@airport/vhf-radio",
       "projectFolder": "../AIRport/libs/vhf-radio",
       "shouldPublish": true
