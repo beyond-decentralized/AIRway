@@ -1,5 +1,5 @@
 import { lib } from '@airport/direction-indicator'
-import { IClient, Client } from './Client'
+import { Client } from './Client'
 // import {
 //     decryptString,
 //     encryptString,
@@ -7,8 +7,4 @@ import { IClient, Client } from './Client'
 
 const client = lib('client')
 
-export const CLIENT = client.token<IClient>({
-    class: Client,
-    interface: 'IClient',
-    token: 'IClient'
-})
+client.register(Client)
