@@ -126,6 +126,11 @@
       "projectFolder": "../AIRport/generators/takeoff",
       "shouldPublish": true
     },
+    {
+      "packageName": "@airport/taxiway",
+      "projectFolder": "../AIRport/generators/taxiway",
+      "shouldPublish": true
+    },
     // AIRport "libs" folder (alphabetical order)
     {
       "packageName": "@airport/autopilot",
@@ -210,6 +215,11 @@
       "shouldPublish": true
     },
     // AIRport "schemas" folder (alphabetical order)
+    {
+      "packageName": "@airport/schemas",
+      "projectFolder": "../AIRport/schemas",
+      "shouldPublish": true
+    },
     {
       "packageName": "@airport/airport-code",
       "projectFolder": "../AIRport/schemas/airport-code",
