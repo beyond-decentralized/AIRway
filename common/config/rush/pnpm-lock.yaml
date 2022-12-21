@@ -21,6 +21,7 @@ dependencies:
   '@rush-temp/check-in': 'file:projects/check-in.tgz'
   '@rush-temp/client': 'file:projects/client.tgz'
   '@rush-temp/direction-indicator': 'file:projects/direction-indicator.tgz'
+  '@rush-temp/final-approach': 'file:projects/final-approach.tgz'
   '@rush-temp/flight-number': 'file:projects/flight-number.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:projects/fuel-hydrant-system.tgz'
   '@rush-temp/ground-control': 'file:projects/ground-control.tgz'
@@ -12589,6 +12590,24 @@ packages:
       integrity: sha512-AfumI9+UFUP1DB2m14XMFNlGcUqAJaZk/I8LF6wTPDfqRLutahyaxC43JyIxGeMqfJblwDrV4mKjx4Ag3381lA==
       tarball: 'file:projects/direction-indicator.tgz'
     version: 0.0.0
+  'file:projects/final-approach.tgz':
+    dependencies:
+      '@rollup/plugin-commonjs': 21.1.0_rollup@2.79.1
+      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.1
+      rollup: 2.79.1
+      rollup-plugin-dts: 4.2.3_rollup@2.79.1+typescript@4.9.4
+      rollup-plugin-peer-deps-external: 2.2.4_rollup@2.79.1
+      rollup-plugin-terser: 7.0.2_rollup@2.79.1
+      rollup-plugin-typescript2: 0.33.0_rollup@2.79.1+typescript@4.9.4
+      tslib: 2.4.1
+      typescript: 4.9.4
+      uuid: 8.3.2
+    dev: false
+    name: '@rush-temp/final-approach'
+    resolution:
+      integrity: sha512-3PhjzkLKz6rNB+WkKT3N9w2EUvwyXeNiIPA4rhsVAs1u/Bo0fX6DJ206B4McokZmDKxZm6OmO9SFNmVDzPiXCA==
+      tarball: 'file:projects/final-approach.tgz'
+    version: 0.0.0
   'file:projects/flight-number.tgz':
     dependencies:
       '@rollup/plugin-commonjs': 21.1.0_rollup@2.79.1
@@ -13007,7 +13026,7 @@ packages:
     dev: false
     name: '@rush-temp/terminal-map'
     resolution:
-      integrity: sha512-F/I+UgWMhHHw88of6lbyuTuS/To/U7rIU3ODdSOmlYJ4lYDTGLuBFNP8pObyy9IpL/W0k9Iq1H+Tw6wMuQIsCQ==
+      integrity: sha512-YHUXKt5O86DyeExI73W3lDAvj/wY5A864xfcRIVexp6+0eI0EvAmHNFAmegmgQLC/6hJBbCXO+nOUhuwI8fajg==
       tarball: 'file:projects/terminal-map.tgz'
     version: 0.0.0
   'file:projects/terminal.tgz':
@@ -13045,7 +13064,7 @@ packages:
     dev: false
     name: '@rush-temp/tower'
     resolution:
-      integrity: sha512-JBt5D1Op2U4f6Rdx+KIFdjwbHaRCmd9w7llDWozE4r9nUHiTP5MHVxYVxArU/JpYprceplZy7DsCUqZD4G2QLA==
+      integrity: sha512-ETndwIKjzZ9GTXrGyX6gBAmrSbPmcchPH1TvIyy7MIu7kQK5VeqBSaDdRecGAZS1aAVnRjXHsMrUkLv4/d1moA==
       tarball: 'file:projects/tower.tgz'
     version: 0.0.0
   'file:projects/travel-document-checkpoint.tgz':
@@ -13293,6 +13312,7 @@ packages:
       integrity: sha512-JP94VMXHBcpiWd9z++USEzN0D1xdxeRm4itZVjeTKme0CaYKDEUugeHicfaA0irn1uGvGOtjk59fjN5ZAoHkCA==
       tarball: 'file:projects/web-tower.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@babel/core': ^7.16.0
   '@capacitor/app': 4.1.1
@@ -13316,6 +13336,7 @@ specifiers:
   '@rush-temp/check-in': 'file:./projects/check-in.tgz'
   '@rush-temp/client': 'file:./projects/client.tgz'
   '@rush-temp/direction-indicator': 'file:./projects/direction-indicator.tgz'
+  '@rush-temp/final-approach': 'file:./projects/final-approach.tgz'
   '@rush-temp/flight-number': 'file:./projects/flight-number.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:./projects/fuel-hydrant-system.tgz'
   '@rush-temp/ground-control': 'file:./projects/ground-control.tgz'
