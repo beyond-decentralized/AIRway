@@ -6,7 +6,8 @@ import type {
 } from '@airport/arrivals-n-departures';
 import type { Repository_GUID } from '@airport/holding-pattern';
 import type {
-    SearchRequest, UserRequest,
+    SearchRequest,
+    UserRequest,
 } from '@airway/types'
 import {
     BasicServer,
@@ -73,24 +74,38 @@ server.fastify.put('/search', (
     // TODO: implement
 })
 
+async function getRequest<T>(
+    request: any,
+    reply: any,
+    serverState: ServerState
+): Promise<T> {
+    if (serverState !== ServerState.RUNNING) {
+        reply.send({
+            error: 'Internal Error'
+        })
+        return null
+    }
+    const preProcessedRequest = await preProcessRequest<T>(
+        request)
+    if (!preProcessedRequest) {
+        reply.send({
+            error: 'Internal Error'
+        })
+        return null
+    }
+
+    return preProcessedRequest
+}
+
 async function serveReadRequest(
     request: any,
     reply: any,
     serverState: ServerState,
     encryptionKey: string
 ) {
-    if (serverState !== ServerState.RUNNING) {
-        reply.send({
-            error: 'Internal Error'
-        })
-        return
-    }
-    const readRequest = await processRequest<RepositorySynchronizationReadRequest>(
-        request)
+    const readRequest = await getRequest<RepositorySynchronizationReadRequest>(
+        request, reply, serverState)
     if (!readRequest) {
-        reply.send({
-            error: 'Internal Error'
-        })
         return
     }
 
@@ -121,7 +136,7 @@ async function serveReadRequest(
     } as RepositorySynchronizationReadResponse)
 }
 
-async function processRequest<Req>(
+async function preProcessRequest<Req>(
     request: any,
 ): Promise<Req> {
     try {
@@ -147,18 +162,9 @@ async function serveWriteRequest(
     serverState: ServerState,
     encryptionKey: string
 ) {
-    if (serverState !== ServerState.RUNNING) {
-        reply.send(JSON.stringify({
-            error: 'Internal Error'
-        }))
-        return
-    }
-    const writeRequest = await processRequest<RepositorySynchronizationWriteRequest>(
-        request)
+    const writeRequest = await getRequest<RepositorySynchronizationWriteRequest>(
+        request, reply, serverState)
     if (!writeRequest) {
-        reply.send(JSON.stringify({
-            error: 'Internal Error'
-        }))
         return
     }
 
