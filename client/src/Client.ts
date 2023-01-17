@@ -7,9 +7,7 @@ import {
     RepositorySynchronizationWriteResponse
 } from '@airport/arrivals-n-departures';
 import { Injected } from '@airport/direction-indicator';
-import type {
-    RepositoryTransactionHistory_SyncTimestamp
-} from '@airport/holding-pattern';
+import type { RepositoryTransactionHistory_SyncTimestamp } from '@airport/ground-control';
 
 export interface IClient {
 

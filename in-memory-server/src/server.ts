@@ -4,7 +4,6 @@ import type {
     RepositorySynchronizationReadResponse,
     RepositorySynchronizationWriteRequest,
 } from '@airport/arrivals-n-departures';
-import type { Repository_GUID } from '@airport/holding-pattern';
 import type {
     SearchRequest,
     UserRequest,
@@ -14,6 +13,7 @@ import {
     ServerState
 } from '@airway/processor-common'
 import * as http from 'http'
+import { Repository_GUID } from '@airport/ground-control';
 
 // var encryptionKey = 'ciw7p02f70000ysjon7gztjn7c2x7GfJ'
 var encryptionKey = process.env.ENCRYPTION_KEY as string
