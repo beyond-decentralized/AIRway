@@ -2,7 +2,7 @@
     "name": "@airway/types",
     "version": "0.0.1",
     "peerDependencies": {
-        "@airport/arrivals-n-departures": "0.0.1"
+        "@airport/ground-control": "0.0.1"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^21.0.1",

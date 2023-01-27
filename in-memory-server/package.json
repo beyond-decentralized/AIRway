@@ -1,6 +1,5 @@
 {
     "dependencies": {
-        "@airport/arrivals-n-departures": "0.0.1",
         "@airport/ground-control": "0.0.1",
         "@airway/types": "0.0.1",
         "@airway/processor-common": "0.0.1",

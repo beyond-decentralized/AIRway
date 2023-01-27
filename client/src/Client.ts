@@ -1,13 +1,5 @@
-import {
-    RepositorySynchronizationMessage,
-    RepositorySynchronizationReadRequest,
-    RepositorySynchronizationReadResponse,
-    RepositorySynchronizationReadResponseFragment,
-    RepositorySynchronizationWriteRequest,
-    RepositorySynchronizationWriteResponse
-} from '@airport/arrivals-n-departures';
 import { Injected } from '@airport/direction-indicator';
-import type { RepositoryTransactionHistory_SyncTimestamp } from '@airport/ground-control';
+import type { RepositorySynchronizationMessage, RepositorySynchronizationReadRequest, RepositorySynchronizationReadResponse, RepositorySynchronizationReadResponseFragment, RepositorySynchronizationWriteRequest, RepositorySynchronizationWriteResponse, RepositoryTransactionHistory_SyncTimestamp } from '@airport/ground-control';
 
 export interface IClient {
 
