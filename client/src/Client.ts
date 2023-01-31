@@ -1,5 +1,5 @@
 import { Injected } from '@airport/direction-indicator';
-import type { RepositorySynchronizationMessage, RepositorySynchronizationReadRequest, RepositorySynchronizationReadResponse, RepositorySynchronizationReadResponseFragment, RepositorySynchronizationWriteRequest, RepositorySynchronizationWriteResponse, RepositoryTransactionHistory_SyncTimestamp } from '@airport/ground-control';
+import type { SyncRepositoryMessage, SyncRepositoryReadRequest, SyncRepositoryReadResponse, SyncRepositoryReadResponseFragment, SyncRepositoryWriteRequest, SyncRepositoryWriteResponse, RepositoryTransactionHistory_SyncTimestamp } from '@airport/ground-control';
 
 export interface IClient {
 
@@ -7,12 +7,12 @@ export interface IClient {
         location: string,
         repositoryGUID: string,
         sinceSyncTimestamp?: number
-    ): Promise<RepositorySynchronizationReadResponseFragment[]>
+    ): Promise<SyncRepositoryReadResponseFragment[]>
 
     sendRepositoryTransactions(
         location: string,
         repositoryGUID: string,
-        messages: RepositorySynchronizationMessage[]
+        messages: SyncRepositoryMessage[]
     ): Promise<RepositoryTransactionHistory_SyncTimestamp>
 
 }
@@ -28,11 +28,11 @@ export class Client
         location: string,
         repositoryGUID: string,
         sinceSyncTimestamp: number = null
-    ): Promise<RepositorySynchronizationReadResponseFragment[]> {
+    ): Promise<SyncRepositoryReadResponseFragment[]> {
         try {
             const response = await this.sendMessage<
-                RepositorySynchronizationReadRequest,
-                RepositorySynchronizationReadResponse>(location + '/read', {
+                SyncRepositoryReadRequest,
+                SyncRepositoryReadResponse>(location + '/read', {
                     repositoryGUID,
                     syncTimestamp: sinceSyncTimestamp
                 })
@@ -50,12 +50,12 @@ export class Client
     async sendRepositoryTransactions(
         location: string,
         repositoryGUID: string,
-        messages: RepositorySynchronizationMessage[]
+        messages: SyncRepositoryMessage[]
     ): Promise<RepositoryTransactionHistory_SyncTimestamp> {
         try {
             const response = await this.sendMessage<
-                RepositorySynchronizationWriteRequest,
-                RepositorySynchronizationWriteResponse
+                SyncRepositoryWriteRequest,
+                SyncRepositoryWriteResponse
             >(location + '/write', {
                 messages,
                 repositoryGUID

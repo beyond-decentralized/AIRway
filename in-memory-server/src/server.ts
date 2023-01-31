@@ -1,8 +1,8 @@
 import type {
-    RepositorySynchronizationMessage,
-    RepositorySynchronizationReadRequest,
-    RepositorySynchronizationReadResponse,
-    RepositorySynchronizationWriteRequest,
+    SyncRepositoryMessage,
+    SyncRepositoryReadRequest,
+    SyncRepositoryReadResponse,
+    SyncRepositoryWriteRequest,
 } from '@airport/arrivals-n-departures';
 import type {
     SearchRequest,
@@ -25,7 +25,7 @@ export const server: BasicServer<http.Server> = new BasicServer<http.Server>({
 })
 
 export interface ITransactionLogEntry {
-    messages: RepositorySynchronizationMessage[]
+    messages: SyncRepositoryMessage[]
     repositoryGUID: string
     syncTimestamp: number
 }
@@ -103,7 +103,7 @@ async function serveReadRequest(
     serverState: ServerState,
     encryptionKey: string
 ) {
-    const readRequest = await getRequest<RepositorySynchronizationReadRequest>(
+    const readRequest = await getRequest<SyncRepositoryReadRequest>(
         request, reply, serverState)
     if (!readRequest) {
         return
@@ -133,7 +133,7 @@ async function serveReadRequest(
     // }
     reply.send({
         fragments
-    } as RepositorySynchronizationReadResponse)
+    } as SyncRepositoryReadResponse)
 }
 
 async function preProcessRequest<Req>(
@@ -162,7 +162,7 @@ async function serveWriteRequest(
     serverState: ServerState,
     encryptionKey: string
 ) {
-    const writeRequest = await getRequest<RepositorySynchronizationWriteRequest>(
+    const writeRequest = await getRequest<SyncRepositoryWriteRequest>(
         request, reply, serverState)
     if (!writeRequest) {
         return
@@ -184,7 +184,7 @@ async function serveWriteRequest(
 
     // let packagedMessage = JSON.stringify({
     //     syncTimestamp
-    // } as RepositorySynchronizationWriteResponse)
+    // } as SyncRepositoryWriteResponse)
     // if (encryptionKey) {
     //     packagedMessage = encryptStringSync(
     //         packagedMessage, encryptionKey)
