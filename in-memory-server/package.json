@@ -1,19 +1,19 @@
 {
     "dependencies": {
-        "@airport/ground-control": "0.0.1",
-        "@airway/types": "0.0.1",
-        "@airway/processor-common": "0.0.1",
-        "async": "^3.2.1",
-        "fastify": "^3.22.0",
-        "fastify-cors": "^6.0.2",
-        "string-cipher": "^1.0.8",
-        "uuid": "^8.3.2"
+        "@airport/ground-control": "workspace:../../AIRport/api/ground-control",
+        "@airway/types": "workspace:../types",
+        "@airway/processor-common": "workspace:../processor-common",
+        "async": "workspace:../../node_modules/async",
+        "fastify": "workspace:../../node_modules/fastify",
+        "fastify-cors": "workspace:../../node_modules/fastify-cors",
+        "string-cipher": "workspace:../../node_modules/string-cipher",
+        "uuid": "workspace:../../node_modules/uuid"
     },
     "devDependencies": {
-        "@tsconfig/node16": "1.0.2",
-        "@types/node": "^16.10.7",
-        "tslint": "^6.1.3",
-        "typescript": "^4.5.2"
+        "@tsconfig/node16": "workspace:../../node_modules/@tsconfig/node16",
+        "@types/node": "workspace:../../node_modules/@types/node",
+        "tslint": "workspace:../../node_modules/tslint",
+        "typescript": "workspace:../../node_modules/typescript"
     },
     "main": "lib/server.js",
     "name": "@airway/in-memory-server",

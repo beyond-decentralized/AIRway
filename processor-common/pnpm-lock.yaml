@@ -1,0 +1,65 @@
+lockfileVersion: '6.0'
+
+dependencies:
+  '@airway/types':
+    specifier: workspace:../types
+    version: link:../types
+  fastify:
+    specifier: workspace:../../node_modules/fastify
+    version: link:../../node_modules/fastify
+  fastify-cors:
+    specifier: workspace:../../node_modules/fastify-cors
+    version: link:../../node_modules/fastify-cors
+  fastify-static:
+    specifier: workspace:../../node_modules/fastify-static
+    version: link:../../node_modules/fastify-static
+  rxjs:
+    specifier: workspace:../../node_modules/rxjs
+    version: link:../../node_modules/rxjs
+  string-cipher:
+    specifier: workspace:../../node_modules/string-cipher
+    version: link:../../node_modules/string-cipher
+  uuid:
+    specifier: workspace:../../node_modules/uuid
+    version: link:../../node_modules/uuid
+
+devDependencies:
+  '@airport/taxiway':
+    specifier: workspace:../../AIRport/generators/taxiway
+    version: link:../../AIRport/generators/taxiway
+  '@rollup/plugin-commonjs':
+    specifier: workspace:../../node_modules/@rollup/commonjs
+    version: link:../../node_modules/@rollup/commonjs
+  '@rollup/plugin-node-resolve':
+    specifier: workspace:../../node_modules/@rollup/plugin-node-resolve
+    version: link:../../node_modules/@rollup/plugin-node-resolve
+  '@types/node':
+    specifier: workspace:../../node_modules/@types/node
+    version: link:../../node_modules/@types/node
+  rollup:
+    specifier: workspace:../../node_modules/rollup
+    version: link:../../node_modules/rollup
+  rollup-plugin-dts:
+    specifier: workspace:../../node_modules/rollup-plugin-dts
+    version: link:../../node_modules/rollup-plugin-dts
+  rollup-plugin-peer-deps-external:
+    specifier: workspace:../../node_modules/rollup-plugin-peer-deps-external
+    version: link:../../node_modules/rollup-plugin-peer-deps-external
+  rollup-plugin-terser:
+    specifier: workspace:../../node_modules/rollup-plugin-terser
+    version: link:../../node_modules/rollup-plugin-terser
+  rollup-plugin-typescript2:
+    specifier: workspace:../../node_modules/rollup-plugin-typescript2
+    version: link:../../node_modules/rollup-plugin-typescript2
+  ts-node:
+    specifier: workspace:../../node_modules/ts-node
+    version: link:../../node_modules/ts-node
+  ts-patch:
+    specifier: workspace:../../node_modules/ts-patch
+    version: link:../../node_modules/ts-patch
+  tslib:
+    specifier: workspace:../../node_modules/tslib
+    version: link:../../node_modules/tslib
+  typescript:
+    specifier: workspace:../../node_modules/typescript
+    version: link:../../node_modules/typescript
