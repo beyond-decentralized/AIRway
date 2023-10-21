@@ -1,6 +1,8 @@
 {
-    "dependencies": {
-        "@airport/ground-control": "workspace:../../AIRport/api/ground-control",
+    "name": "@airway/in-memory-server",
+    "version": "0.0.1",
+    "peerDependencies": {
+        "@airport/ground-control": "workspace:../../AIRport/apis/ground-control",
         "@airway/types": "workspace:../types",
         "@airway/processor-common": "workspace:../processor-common",
         "async": "workspace:../../node_modules/async",
@@ -10,13 +12,22 @@
         "uuid": "workspace:../../node_modules/uuid"
     },
     "devDependencies": {
-        "@tsconfig/node16": "workspace:../../node_modules/@tsconfig/node16",
+        "@airport/taxiway": "workspace:../../AIRport/generators/taxiway",
+        "@tsconfig/node18": "workspace:../../node_modules/@tsconfig/node18",
         "@types/node": "workspace:../../node_modules/@types/node",
         "tslint": "workspace:../../node_modules/tslint",
         "typescript": "workspace:../../node_modules/typescript"
     },
-    "main": "lib/server.js",
-    "name": "@airway/in-memory-server",
-    "typings": "lib/server",
-    "version": "0.0.1"
+    "main": "dist/esm/in-memory-server.index.mjs",
+    "module": "dist/esm/in-memory-server.index.mjs",
+    "files": [
+      "dist"
+    ],
+    "scripts": {
+      "build": "rollup -c ./rollup.config.mjs",
+      "clean-build": "rollup -c ./rollup.config.mjs --config-clean",
+      "dev": "rollup -c ./rollup.config.mjs -w",
+      "serve": "node ./dist/esm/in-memory-server.index.mjs"
+    },
+    "types": "dist/esm/in-memory-server.index.d.ts"
 }

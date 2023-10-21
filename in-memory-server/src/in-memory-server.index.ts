@@ -3,7 +3,8 @@ import type {
     SyncRepositoryReadRequest,
     SyncRepositoryReadResponse,
     SyncRepositoryWriteRequest,
-} from '@airport/arrivals-n-departures';
+    Repository_GUID,
+} from '@airport/ground-control'
 import type {
     SearchRequest,
     UserRequest,
@@ -13,7 +14,7 @@ import {
     ServerState
 } from '@airway/processor-common'
 import * as http from 'http'
-import { Repository_GUID } from '@airport/ground-control';
+import fastifyCors from 'fastify-cors'
 
 // var encryptionKey = 'ciw7p02f70000ysjon7gztjn7c2x7GfJ'
 var encryptionKey = process.env.ENCRYPTION_KEY as string
@@ -33,7 +34,7 @@ export interface ITransactionLogEntry {
 const transactionLogs: Map<Repository_GUID, ITransactionLogEntry[]>
     = new Map()
 
-server.fastify.register(require('fastify-cors'), {
+server.fastify.register(fastifyCors, {
     origin: (
         origin: any,
         cb: any
