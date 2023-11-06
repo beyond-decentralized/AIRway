@@ -121,6 +121,7 @@ async function serveReadRequest(
 
     let fragments = transactionLog
     if (readRequest.syncTimestamp) {
+        console.log(`SyncTimestamp: ${readRequest.syncTimestamp}`)
         fragments = []
         for (let transactionLogEntry of transactionLog) {
             if (transactionLogEntry.syncTimestamp >= readRequest.syncTimestamp) {
@@ -128,6 +129,8 @@ async function serveReadRequest(
             }
         }
     }
+
+    console.log(`ON Read: ${readRequest.repositoryGUID} # Transaction Log entries: ${transactionLog.length}`)
 
     // if (encryptionKey) {
     //     packagedMessage = encryptStringSync(results.join('|'), encryptionKey)
@@ -182,6 +185,7 @@ async function serveWriteRequest(
         repositoryGUID: writeRequest.repositoryGUID,
         syncTimestamp
     })
+    console.log(`AFTER Write: ${writeRequest.repositoryGUID} # Transaction Log entries: ${transactionLog.length}`)
 
     // let packagedMessage = JSON.stringify({
     //     syncTimestamp
