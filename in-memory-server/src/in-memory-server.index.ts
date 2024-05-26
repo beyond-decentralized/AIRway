@@ -1,9 +1,10 @@
 import type {
-    SyncRepositoryMessage,
-    SyncRepositoryReadRequest,
-    SyncRepositoryReadResponse,
-    SyncRepositoryWriteRequest,
+    IRepositoryBlock,
+    RepositoryBlocksReadRequest,
+    RepositoryBlocksReadResponse,
+    RepositoryBlockWriteRequest,
     Repository_GUID,
+    RepositoryBlock_SyncTimestamp,
 } from '@airport/ground-control'
 import type {
     SearchRequest,
@@ -26,9 +27,9 @@ export const server: BasicServer<http.Server> = new BasicServer<http.Server>({
 })
 
 export interface ITransactionLogEntry {
-    messages: SyncRepositoryMessage[]
-    repositoryGUID: string
-    syncTimestamp: number
+    blocks: IRepositoryBlock[]
+    repositoryGUID: Repository_GUID
+    syncTimestamp: RepositoryBlock_SyncTimestamp
 }
 
 const transactionLogs: Map<Repository_GUID, ITransactionLogEntry[]>
@@ -104,7 +105,7 @@ async function serveReadRequest(
     serverState: ServerState,
     encryptionKey: string
 ) {
-    const readRequest = await getRequest<SyncRepositoryReadRequest>(
+    const readRequest = await getRequest<RepositoryBlocksReadRequest>(
         request, reply, serverState)
     if (!readRequest) {
         return
@@ -114,20 +115,22 @@ async function serveReadRequest(
 
     if (!transactionLog || !transactionLog.length) {
         reply.send({
-            fragments: []
+            blocks: [],
+            repositoryGUID: readRequest.repositoryGUID
         })
         return
     }
 
-    let fragments = transactionLog
+    let blocks = []
     if (readRequest.syncTimestamp) {
         console.log(`SyncTimestamp: ${readRequest.syncTimestamp}`)
-        fragments = []
         for (let transactionLogEntry of transactionLog) {
             if (transactionLogEntry.syncTimestamp >= readRequest.syncTimestamp) {
-                fragments.push(transactionLogEntry)
+                blocks.push(transactionLogEntry)
             }
         }
+    } else {
+        blocks = transactionLog.reduce((accumulator: any, current) => accumulator.concat(current.blocks), [])
     }
 
     console.log(`ON Read: ${readRequest.repositoryGUID} # Transaction Log entries: ${transactionLog.length}`)
@@ -136,8 +139,9 @@ async function serveReadRequest(
     //     packagedMessage = encryptStringSync(results.join('|'), encryptionKey)
     // }
     reply.send({
-        fragments
-    } as SyncRepositoryReadResponse)
+        blocks,
+        repositoryGUID: readRequest.repositoryGUID
+    } as RepositoryBlocksReadResponse)
 }
 
 async function preProcessRequest<Req>(
@@ -166,7 +170,7 @@ async function serveWriteRequest(
     serverState: ServerState,
     encryptionKey: string
 ) {
-    const writeRequest = await getRequest<SyncRepositoryWriteRequest>(
+    const writeRequest = await getRequest<RepositoryBlockWriteRequest>(
         request, reply, serverState)
     if (!writeRequest) {
         return
@@ -181,7 +185,7 @@ async function serveWriteRequest(
     }
 
     transactionLog.push({
-        messages: writeRequest.messages,
+        blocks: writeRequest.blocks,
         repositoryGUID: writeRequest.repositoryGUID,
         syncTimestamp
     })
@@ -189,7 +193,7 @@ async function serveWriteRequest(
 
     // let packagedMessage = JSON.stringify({
     //     syncTimestamp
-    // } as SyncRepositoryWriteResponse)
+    // } as RepositoryBlockWriteResponse)
     // if (encryptionKey) {
     //     packagedMessage = encryptStringSync(
     //         packagedMessage, encryptionKey)

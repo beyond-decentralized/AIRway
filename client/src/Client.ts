@@ -1,5 +1,5 @@
 import { Injected } from '@airport/direction-indicator';
-import type { SyncRepositoryMessage, SyncRepositoryReadRequest, SyncRepositoryReadResponse, SyncRepositoryReadResponseFragment, SyncRepositoryWriteRequest, SyncRepositoryWriteResponse, RepositoryTransactionHistory_SyncTimestamp } from '@airport/ground-control';
+import type { IRepositoryBlock, RepositoryBlock_SyncTimestamp, RepositoryBlocksReadRequest, RepositoryBlocksReadResponse, RepositoryBlockWriteRequest, RepositoryBlockWriteResponse } from '@airport/ground-control';
 
 export interface IClient {
 
@@ -7,13 +7,13 @@ export interface IClient {
         location: string,
         repositoryGUID: string,
         sinceSyncTimestamp?: number
-    ): Promise<SyncRepositoryReadResponseFragment[]>
+    ): Promise<IRepositoryBlock[]>
 
     sendRepositoryTransactions(
         location: string,
         repositoryGUID: string,
-        messages: SyncRepositoryMessage[]
-    ): Promise<RepositoryTransactionHistory_SyncTimestamp>
+        messages: IRepositoryBlock[]
+    ): Promise<RepositoryBlock_SyncTimestamp>
 
 }
 
@@ -28,11 +28,11 @@ export class Client
         location: string,
         repositoryGUID: string,
         sinceSyncTimestamp: number = null
-    ): Promise<SyncRepositoryReadResponseFragment[]> {
+    ): Promise<IRepositoryBlock[]> {
         try {
             const response = await this.sendMessage<
-                SyncRepositoryReadRequest,
-                SyncRepositoryReadResponse>(location + '/read', {
+                RepositoryBlocksReadRequest,
+                RepositoryBlocksReadResponse>(location + '/read', {
                     repositoryGUID,
                     syncTimestamp: sinceSyncTimestamp
                 })
@@ -40,7 +40,7 @@ export class Client
                 console.error(response.error)
                 return []
             }
-            return response.fragments
+            return response.blocks
         } catch (e) {
             console.error(e)
             return []
@@ -50,14 +50,14 @@ export class Client
     async sendRepositoryTransactions(
         location: string,
         repositoryGUID: string,
-        messages: SyncRepositoryMessage[]
-    ): Promise<RepositoryTransactionHistory_SyncTimestamp> {
+        blocks: IRepositoryBlock[]
+    ): Promise<RepositoryBlock_SyncTimestamp> {
         try {
             const response = await this.sendMessage<
-                SyncRepositoryWriteRequest,
-                SyncRepositoryWriteResponse
+                RepositoryBlockWriteRequest,
+                RepositoryBlockWriteResponse
             >(location + '/write', {
-                messages,
+                blocks,
                 repositoryGUID
             })
             if (response.error) {
